@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+include config.yaml
+recursive-include turtle_trading *.py
+recursive-include docs *.md *.rst
+recursive-include examples *.py
+recursive-include tests *.py
+global-exclude __pycache__
+global-exclude *.py[co]

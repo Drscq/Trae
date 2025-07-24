@@ -93,7 +93,7 @@ for symbol, symbol_signals in signals.items():
 Run the demonstration script to see the system in action:
 
 ```bash
-python3 demo_turtle_trading.py
+python examples/demo_turtle_trading.py
 ```
 
 ### Testing
@@ -101,7 +101,14 @@ python3 demo_turtle_trading.py
 Test the implemented components:
 
 ```bash
-python3 test_implemented.py
+# Run all tests
+python -m pytest tests/
+
+# Run integration tests
+python tests/test_implemented.py
+
+# Run specific test
+python -m pytest tests/test_config.py -v
 ```
 
 ## ⚙️ Configuration
@@ -135,13 +142,18 @@ account:
 
 ```
 turtle_trading/
-├── core/
-│   ├── config.py           # Configuration management
-│   ├── data_manager.py     # Data fetching and storage
-│   └── signal_engine.py    # Signal generation
-├── backtesting/            # [Planned] Backtesting engine
-├── optimization/           # [Planned] Parameter optimization
-└── monitoring/             # [Planned] Performance monitoring
+├── core/                       # Core trading components ✅
+│   ├── config.py              # Configuration management
+│   ├── data_manager.py        # Data fetching and storage
+│   └── signal_engine.py       # Signal generation
+├── backtesting/               # Backtesting framework [Planned]
+├── optimization/              # Parameter optimization [Planned]
+├── monitoring/                # Performance monitoring [Planned]
+└── utils/                     # Utility functions [Planned]
+
+examples/                      # Example scripts and demos
+tests/                         # Comprehensive test suite
+docs/                          # Documentation and guides
 ```
 
 ## 📈 Performance Characteristics
