@@ -1,0 +1,93 @@
+# Turtle Trading System Configuration
+
+# Data Configuration
+data:
+  provider: "yfinance"  # yfinance, alpaca, ib
+  universe: "sp500"     # sp500, nasdaq100, custom, all_us
+  custom_symbols: []    # Used when universe is "custom"
+  start_date: "2020-01-01"
+  end_date: null        # null for current date
+  data_frequency: "1d"  # 1d, 1h, 15m, etc.
+  
+# Trading Rules
+trading:
+  # Entry Rules
+  system1_length: 20    # Primary breakout length
+  system2_length: 55    # Secondary breakout length
+  use_system2: true     # Enable 55-day system
+  
+  # Position Sizing
+  risk_per_unit: 0.01   # 1% risk per unit
+  max_risk_per_position: 0.02  # 2% max risk per instrument
+  max_units_per_position: 5    # Max pyramid units
+  pyramid_increment: 0.5       # ATR multiple for pyramiding
+  
+  # Risk Management
+  atr_period: 20        # ATR calculation period
+  stop_atr_multiple: 2.0  # Stop distance in ATR
+  exit_length_s1: 10    # Exit length for system 1
+  exit_length_s2: 20    # Exit length for system 2
+  max_position_time: 252  # Max days to hold position
+  
+  # Execution
+  order_type: "market"  # market, limit
+  slippage_bps: 5       # Slippage in basis points
+  commission_per_share: 0.005  # Commission per share
+  
+# Account Settings
+account:
+  initial_capital: 100000
+  currency: "USD"
+  
+# Backtesting
+backtest:
+  start_date: "2010-01-01"
+  end_date: "2023-12-31"
+  benchmark: "SPY"
+  
+# Optimization
+optimization:
+  enabled: true
+  frequency: "monthly"  # daily, weekly, monthly
+  
+  # Parameter ranges for optimization
+  param_ranges:
+    system1_length: [10, 30]
+    system2_length: [40, 80]
+    atr_period: [10, 30]
+    stop_atr_multiple: [1.5, 3.0]
+    risk_per_unit: [0.005, 0.02]
+    
+  # Optimization criteria
+  objective: "sharpe_ratio"  # sharpe_ratio, calmar_ratio, total_return
+  min_trades: 50
+  max_drawdown_threshold: 0.25
+  min_sharpe: 1.0
+  
+# Notifications
+notifications:
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: ""
+    password: ""
+    recipients: []
+    
+  slack:
+    enabled: false
+    webhook_url: ""
+    channel: "#trading"
+    
+# Monitoring
+monitoring:
+  max_drawdown_alert: 0.15
+  daily_loss_alert: 0.05
+  position_size_alert: 0.10
+  
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/turtle_trading.log"
+  max_size: "10MB"
+  backup_count: 5
